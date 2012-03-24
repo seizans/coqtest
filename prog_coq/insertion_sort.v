@@ -5,7 +5,11 @@ Require Import Arith.
 Fixpoint insert (a : nat) (l : list nat) : list nat :=
   match l with
      | nil => a :: nil
-     | x :: xs => if leb a x then a :: l else x :: insert a xs
+     | x :: xs => 
+         match (leb a x) with
+           | true => a :: l
+           | false => x :: insert a xs
+         end
   end.
 
 Fixpoint insertion_sort (l : list nat) : list nat :=
